@@ -40,6 +40,9 @@ public class FrameTest {
 	    */
 		a.dragAndDrop(source,target).build().perform();
 		
+		//back to the frame
+		driver.switchTo().defaultContent();
+		
 		
 		
 		
