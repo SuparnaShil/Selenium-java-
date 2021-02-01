@@ -17,7 +17,7 @@ public class MultipleWindow {
 		driver.manage().window().maximize();
 		driver.findElement(By.xpath("//a[contains(text(),'Help')]")).click();
 		System.out.println("Before switching : " +driver.getTitle());
-		
+		 
 		//switching to child id/window
 		
 		Set<String>ids=driver.getWindowHandles(); //first come frist out..
