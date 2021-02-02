@@ -1,3 +1,5 @@
+import java.util.Iterator;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -45,12 +47,21 @@ public class Scope {
 			//right method
 			String controlLink = Keys.chord(Keys.CONTROL,Keys.ENTER);
 			columnDriver.findElements(By.tagName("a")).get(i).sendKeys(controlLink); //dont click on it
-			System.out.println(driver.getTitle());
-			 
+		
+			
+ 			 
 		}
 		
 		
-		
+		Set<String> id= driver.getWindowHandles();
+			Iterator<String> it = id.iterator();
+			
+			//open all tab move to that tabs and print the title of the child tab
+			while(it.hasNext())
+			{
+				driver.switchTo().window(it.next());
+				System.out.println(driver.getTitle());
+			}
 		
 		
 		
