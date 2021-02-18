@@ -20,7 +20,18 @@ public class ImNotRobotCaptcha {
 		int number= findframeID(driver,By.className("recaptcha-checkbox-border"));
 		 driver.switchTo().frame(number);
 		 driver.findElement(By.xpath( " //span[@id='recaptcha-anchor']" )).click();
-
+		 
+		 Thread.sleep(6000);
+		 
+		//button[contains(text(),'Verify')]"
+		 int number1= findframeID(driver,By.cssSelector("#recaptcha-verify-button"));
+		 driver.switchTo().frame(number1);
+		 Thread.sleep(6000);
+		 driver.findElement(By.cssSelector("#recaptcha-verify-button")).click();
+		 
+		 
+		 
+		 
 		/*
 		 * 
 		 * System.out.println(driver.findElements(By.tagName("iframe")).size());
