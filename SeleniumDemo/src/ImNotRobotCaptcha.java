@@ -1,4 +1,4 @@
-import java.util.concurrent.TimeUnit;
+ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -16,6 +16,10 @@ public class ImNotRobotCaptcha {
 
 		driver.get("https://www.google.com/recaptcha/api2/demo");
 		Thread.sleep(6000);
+		
+		int number= findframeID(driver,By.className("recaptcha-checkbox-border"));
+		 driver.switchTo().frame(number);
+		 driver.findElement(By.xpath( " //span[@id='recaptcha-anchor']" )).click();
 
 		/*
 		 * 
@@ -29,7 +33,7 @@ public class ImNotRobotCaptcha {
 
 	}
 
-	public int findframeID(WebDriver driver)
+	public static int findframeID(WebDriver driver, By by)
 
 	{
 		int framecount = driver.findElements(By.tagName("iframe")).size();
@@ -37,11 +41,11 @@ public class ImNotRobotCaptcha {
 
 		for (i = 0; i < framecount; i++) {
 			driver.switchTo().frame(i);
-			int count = driver.findElements(By.className("recaptcha-checkbox-border")).size();
+			int count = driver.findElements(by).size();
 			if (count > 0) {
-				driver.findElement(By.className("recaptcha-checkbox-border")).click();
+				//driver.findElement(by).click();   //span[@id='recaptcha-anchor']
 				break;
-			} else
+			}   else
 				System.out.println("looping continue");
 		}
 
