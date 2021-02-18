@@ -15,12 +15,12 @@ public class AutoSuggestiveDropDown {
 		driver.get("https://ksrtc.in/oprs-web/");
 		driver.findElement(By.xpath("//input[@id='fromPlaceName']")).sendKeys("BENG");
 		Thread.sleep(2000);
-		driver.findElement(By.xpath("//input[@id='fromPlaceName']")).sendKeys(Keys.DOWN);
-		Thread.sleep(2000);
-		driver.findElement(By.xpath("//input[@id='fromPlaceName']")).sendKeys(Keys.DOWN);
-		Thread.sleep(2000);
-		driver.findElement(By.xpath("//input[@id='fromPlaceName']")).sendKeys(Keys.DOWN);
-		System.out.println(driver.findElement(By.xpath("//input[@id='fromPlaceName']")).getText());
+	    //driver.findElement(By.xpath("//input[@id='fromPlaceName']")).sendKeys(Keys.DOWN);
+		//Thread.sleep(2000);
+		//driver.findElement(By.xpath("//input[@id='fromPlaceName']")).sendKeys(Keys.DOWN);
+		//Thread.sleep(2000);
+		//driver.findElement(By.xpath("//input[@id='fromPlaceName']")).sendKeys(Keys.DOWN);
+		//System.out.println(driver.findElement(By.xpath("//input[@id='fromPlaceName']")).getText());
 		//this will not print because this is hidden element selenium cant handle hidden element
 		
 		/*
@@ -33,6 +33,30 @@ public class AutoSuggestiveDropDown {
 		String script= "return document.getElementById(\"fromPlaceName\").value;";  //put forward slash so that java can accept it
 		String text=(String) js.executeScript(script);
 		System.out.println(text);
+		int i=0;
+		
+		while(!text.equalsIgnoreCase("BENGALURU INTERNATIN AIRPORT")) 
+		{
+			i++;
+			driver.findElement(By.xpath("//input[@id='fromPlaceName']")).sendKeys(Keys.DOWN);
+			text=(String) js.executeScript(script);
+			System.out.println(text);
+			
+			if(i>10)
+			{
+				break;
+			}
+			
+		}
+		
+		if(i>10)
+		{
+			System.out.println("Element Not found");
+		}
+		else
+		{
+			System.out.println("Found");
+		}
 		
 	}
 
