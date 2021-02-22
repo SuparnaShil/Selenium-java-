@@ -6,6 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class TableExercise {
+	
+	static int sumofRuns=0;
 
 	public static void main(String[] args) throws InterruptedException {
 		// TODO Auto-generated method stub
@@ -34,11 +36,25 @@ public class TableExercise {
 		
 		for (int i=0; i<count-2; i++)
 		{
-			System.out.println(table.findElements(By.cssSelector(".cb-col.cb-col-100.cb-scrd-itms div:nth-child(3)")).get(i).getText());
+			String run= table.findElements(By.cssSelector(".cb-col.cb-col-100.cb-scrd-itms div:nth-child(3)")).get(i).getText();
+			sumofRuns+= Integer.parseInt(run);
 		}
+		//System.out.println(sumofRuns);
+	    String val=driver.findElement(By.xpath("//div[text()='Extras']/following-sibling::div")).getText();
+	    int extras = Integer.parseInt(val);
+	    int total = sumofRuns+ extras;
+	   // System.out.println(total);
+		String printed= driver.findElement(By.xpath("//div[text()='Total']/following-sibling::div")).getText();
+		int printedTotal = Integer.parseInt(printed);
 		
-		System.out.println(driver.findElement(By.xpath("//div[text()='Extras']/following-sibling::div")).getText());
-		System.out.println(driver.findElement(By.xpath("//div[text()='Total']/following-sibling::div")).getText());
+		if(total==printedTotal)
+		{
+			System.out.println("Count valided");
+		}
+		else
+		{
+			System.out.println("Count not valided");
+		}
 		
 		
 		
